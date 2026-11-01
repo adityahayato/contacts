@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>Contacts — your people, in one place</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Home"><span class="brand-mark">c</span><span>contactly</span></a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-link active" href="/"><span class="nav-icon">▦</span> All contacts <span class="nav-count" id="nav-count">0</span></a>
+      <div class="sidebar-note"><div class="note-icon">✦</div><strong>Your people,<br>in one place.</strong><p>A little more organized. A lot more connected.</p></div>
+      <div class="sidebar-bottom"><span class="avatar avatar-small">Y</span><div><strong>Your space</strong><small>Personal address book</small></div><span class="more">···</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong>Contacts</strong></div><div class="top-actions"><span class="today" id="today"></span><span class="avatar">Y</span></div></header>
+      <section class="content-wrap">
+        <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR ADDRESS BOOK</div><h1>Contacts<span class="title-period">.</span></h1><p class="subtitle">Keep the people who matter close.</p></div><button class="primary-button" id="add-contact"><span class="plus">＋</span> Add contact</button></div>
+
+        <div class="stats-row"><div class="stat-card"><div class="stat-icon people-icon">♧</div><div><span class="stat-label">TOTAL CONTACTS</span><strong id="total-count">—</strong></div><span class="stat-accent"></span></div></div>
+
+        <section class="contacts-section"><div class="section-head"><div><h2>Your contacts <span class="section-count" id="section-count">0</span></h2><p>All your important connections, together.</p></div><label class="search-box"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="Search contacts..." autocomplete="off"><kbd>⌘ K</kbd></label></div>
+          <div class="table-card"><div class="table-scroll"><table><thead><tr><th>NAME</th><th>MOBILE NUMBER</th><th>EMAIL ADDRESS</th><th>ADDRESS</th><th></th></tr></thead><tbody id="contact-list"></tbody></table></div><div class="empty-state" id="empty-state"><div class="empty-art"><span>✳</span><i></i></div><h3 id="empty-title">Your address book is waiting.</h3><p id="empty-copy">Add your first contact and start building your little black book.</p><button class="primary-button" id="empty-add">＋ Add your first contact</button></div><div class="table-footer"><span id="result-count">Showing 0 contacts</span><span>Made for staying connected <b>♥</b></span></div></div>
+        </section>
+        <footer class="page-footer">A calmer way to keep in touch <span>✦</span></footer>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="close-button" id="close-modal" aria-label="Close">×</button><div class="modal-kicker">NEW RECORD</div><h2 id="modal-title">Add a contact<span>.</span></h2><p class="modal-intro">Enter the details for your new address book record.</p><form id="contact-form"><label>Full name <em>*</em><input name="name" required maxlength="120" placeholder="e.g. Alex Morgan"></label><label>Mobile number <em>*</em><input name="mobile" required maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" type="tel" placeholder="10 digits, e.g. 9876543210"><small class="field-help">Enter exactly 10 digits.</small></label><label>Gmail address<input name="email" type="email" maxlength="254" pattern="[A-Za-z0-9._%+-]+@gmail\.com" placeholder="name@gmail.com"><small class="field-help">Only Gmail addresses ending in @gmail.com are accepted.</small></label><label>Address<textarea name="address" maxlength="500" rows="2" placeholder="Street, city, country"></textarea></label><div class="form-error" id="form-error" role="alert"></div><div class="modal-actions"><button class="cancel-button" type="button" id="cancel-modal">Cancel</button><button class="primary-button" type="submit" id="save-button">Save contact <span>↗</span></button></div></form></section></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
